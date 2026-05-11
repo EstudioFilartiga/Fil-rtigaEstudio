@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Filártiga – Estudio Contable y Consultoría | Mercedes, Corrientes</title>
+  <meta name="description" content="Estudio Contable y Consultoría en Mercedes, Corrientes. Servicios impositivos, laborales y contables para empresas y autónomos. Profesionales matriculados." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Filártiga – Estudio Contable y Consultoría" />
+  <meta property="og:description" content="Asesoramiento contable, impositivo y laboral en Mercedes, Corrientes." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="logocelestef.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ══════════════════════════════════════════
+       RESET & TOKENS
+    ══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    :root {
+      /* Palette */
+      --c-void:    #050c18;
+      --c-ink:     #08121f;
+      --c-deep:    #0c1a30;
+      --c-navy:    #152845;
+      --c-cobalt:  #1e3f72;
+      --c-royal:   #2b62b0;
+      --c-azure:   #4a9fd6;
+      --c-sky:     #7ecbe8;
+      --c-silver:  #b8cde3;
+      --c-chalk:   #dde8f2;
+      --c-white:   #f0f5fb;
+      --c-ghost:   rgba(240,245,251,.06);
+      --c-smoke:   #6e8eac;
+      --c-border:  rgba(74,159,214,.10);
+      --c-border2: rgba(74,159,214,.22);
+
+      /* Type */
+      --f-serif: 'Cormorant Garamond', 'Georgia', serif;
+      --f-sans:  'Inter', system-ui, sans-serif;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+      /* Layout */
+      --max-w: 1240px;
+      --nav-h: 74px;
+      --pad-x: clamp(1.5rem, 5vw, 5rem);
+      --section-y: clamp(5rem, 10vw, 9rem);
+    }
+
+    body {
+      font-family: var(--f-sans);
+      background: var(--c-ink);
+      color: var(--c-white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--c-void); }
+    ::-webkit-scrollbar-thumb { background: var(--c-cobalt); border-radius: 99px; }
+    ::selection { background: var(--c-azure); color: var(--c-void); }
+
+    /* ══════════════════════════════════════════
+       UTILITY
+    ══════════════════════════════════════════ */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); }
+    .section-pad { padding: var(--section-y) var(--pad-x); max-width: var(--max-w); margin: 0 auto; }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: .6rem;
+      font-size: .68rem; font-weight: 600; letter-spacing: .24em;
+      text-transform: uppercase; color: var(--c-azure);
+    }
+    .eyebrow::before {
+      content: ''; width: 26px; height: 1px; background: currentColor;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: var(--f-serif);
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      font-weight: 600; line-height: 1.1; letter-spacing: -.01em;
+      color: var(--c-white);
+    }
+    .section-title em { font-style: italic; font-weight: 400; color: var(--c-azure); }
+
+    .section-body {
+      font-size: .92rem; font-weight: 300; line-height: 1.95;
+      color: var(--c-smoke); max-width: 460px;
+    }
+
+    /* Reveal on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .75s var(--ease-out), transform .75s var(--ease-out);
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .reveal.d1 { transition-delay: .1s; }
+    .reveal.d2 { transition-delay: .2s; }
+    .reveal.d3 { transition-delay: .3s; }
+    .reveal.d4 { transition-delay: .4s; }
+
+    /* ══════════════════════════════════════════
+       NAVIGATION
+    ══════════════════════════════════════════ */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 600;
+      height: var(--nav-h);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 var(--pad-x);
+      transition: background .4s var(--ease-in-out),
+                  border-color .4s var(--ease-in-out),
+                  height .3s var(--ease-in-out),
+                  backdrop-filter .4s;
+      border-bottom: 1px solid transparent;
+    }
+    #nav.scrolled {
+      height: 62px;
+      background: rgba(5, 12, 24, .92);
+      border-bottom-color: var(--c-border);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+    }
+
+    /* Logo */
+    .nav-logo {
+      display: flex; align-items: center; gap: .75rem;
+      text-decoration: none; flex-shrink: 0;
+    }
+    .nav-logo img {
+      width: 34px; height: 34px; object-fit: contain;
+      filter: drop-shadow(0 2px 10px rgba(74,159,214,.35));
+    }
+    .nav-logo-text { line-height: 1; }
+    .nav-logo-name {
+      font-family: var(--f-serif); font-size: 1.25rem; font-weight: 600;
+      color: var(--c-white); display: block; letter-spacing: -.01em;
+    }
+    .nav-logo-sub {
+      font-size: .56rem; font-weight: 500; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--c-azure); display: block; margin-top: 2px;
+    }
+
+    /* Center links */
+    .nav-links {
+      display: flex; gap: 2.2rem; list-style: none;
+      position: absolute; left: 50%; transform: translateX(-50%);
+    }
+    .nav-links a {
+      font-size: .74rem; font-weight: 500; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--c-smoke); text-decoration: none;
+      position: relative; padding-bottom: 4px;
+      transition: color .25s;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px; background: var(--c-azure);
+      transition: width .3s var(--ease-out);
+    }
+    .nav-links a:hover { color: var(--c-white); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* Right side */
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .nav-phone {
+      font-size: .74rem; color: var(--c-smoke); text-decoration: none;
+      letter-spacing: .04em; transition: color .25s;
+    }
+    .nav-phone:hover { color: var(--c-azure); }
+
+    .btn-nav-wa {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .5rem 1.2rem; font-size: .71rem; font-weight: 600;
+      letter-spacing: .11em; text-transform: uppercase;
+      color: var(--c-void); background: var(--c-azure);
+      border-radius: 3px; text-decoration: none;
+      transition: background .25s, transform .2s;
+    }
+    .btn-nav-wa:hover { background: var(--c-sky); transform: translateY(-1px); }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px; background: none; border: none;
+    }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--c-white); border-radius: 1px; }
+
+    /* ══════════════════════════════════════════
+       MOBILE MENU
+    ══════════════════════════════════════════ */
+    #mob-menu {
+      display: none; position: fixed; inset: 0; z-index: 590;
+      background: rgba(5, 12, 24, .97);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: calc(var(--nav-h) + 2rem) var(--pad-x) 3rem;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    #mob-menu.open { display: flex; }
+    #mob-menu ul { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    #mob-menu li { border-bottom: 1px solid var(--c-border); }
+    #mob-menu a {
+      display: block; padding: 1.5rem 0;
+      font-family: var(--f-serif); font-size: 2rem; font-weight: 400;
+      color: var(--c-white); text-decoration: none;
+      transition: color .2s, padding-left .2s;
+    }
+    #mob-menu a:hover { color: var(--c-azure); padding-left: .5rem; }
+    .mob-footer {
+      display: flex; flex-direction: column; gap: 1rem;
+      padding-top: 2.5rem;
+    }
+    .mob-wa-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+      padding: 1rem 2rem; background: var(--c-azure); color: var(--c-void);
+      font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      border-radius: 3px; text-decoration: none;
+    }
+    .mob-close {
+      position: absolute; top: 1.5rem; right: var(--pad-x);
+      background: none; border: none; color: var(--c-smoke);
+      font-size: 1.5rem; cursor: pointer; line-height: 1;
+      transition: color .2s;
+    }
+    .mob-close:hover { color: var(--c-white); }
+
+    /* ══════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════ */
+    #hero {
+      min-height: 100svh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      position: relative; overflow: hidden;
+    }
+
+    /* Layered background */
+    .hero-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 70% at 78% 50%, rgba(21, 40, 69, .6) 0%, transparent 65%),
+        radial-gradient(ellipse 35% 45% at 5% 80%, rgba(74,159,214,.04) 0%, transparent 55%),
+        linear-gradient(155deg, #030810 0%, #07111e 40%, #0c1a30 100%);
+    }
+
+    /* Grid overlay */
+    .hero-grid {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(74,159,214,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(74,159,214,.06) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(ellipse 85% 80% at 50% 45%, black 0%, transparent 82%);
+      opacity: .6;
+    }
+
+    /* Vertical divider */
+    .hero-divider {
+      position: absolute; top: 0; bottom: 0; left: 50%; width: 1px;
+      background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(74,159,214,.15) 25%,
+        rgba(74,159,214,.15) 75%,
+        transparent 100%);
+      pointer-events: none;
+    }
+
+    /* Left column */
+    .hero-left {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: calc(var(--nav-h) + 4rem) var(--pad-x) 6rem;
+      padding-left: max(var(--pad-x), calc((100vw - var(--max-w)) / 2 + var(--pad-x)));
+    }
+
+    .hero-kicker {
+      display: inline-flex; align-items: center; gap: .6rem;
+      font-size: .66rem; font-weight: 600; letter-spacing: .26em;
+      text-transform: uppercase; color: var(--c-azure);
+      margin-bottom: 2rem;
+      opacity: 0; animation: riseUp .8s .1s var(--ease-out) both;
+    }
+    .hero-kicker::before { content: ''; width: 24px; height: 1px; background: currentColor; }
+
+    .hero-h1 {
+      font-family: var(--f-serif);
+      font-size: clamp(3rem, 4.8vw, 5.2rem);
+      font-weight: 600; line-height: 1.05; letter-spacing: -.02em;
+      color: var(--c-white);
+      margin-bottom: 1.75rem;
+      opacity: 0; animation: riseUp .8s .22s var(--ease-out) both;
+    }
+    .hero-h1 em { font-style: italic; font-weight: 400; color: var(--c-azure); display: block; }
+
+    .hero-lead {
+      font-size: .95rem; font-weight: 300; line-height: 1.9;
+      color: var(--c-smoke); max-width: 420px; margin-bottom: 2.8rem;
+      opacity: 0; animation: riseUp .8s .36s var(--ease-out) both;
+    }
+
+    .hero-cta {
+      display: flex; flex-wrap: wrap; gap: .9rem;
+      opacity: 0; animation: riseUp .8s .5s var(--ease-out) both;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .9rem 2rem; background: var(--c-azure); color: var(--c-void);
+      font-weight: 600; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
+      border-radius: 3px; text-decoration: none; border: none; cursor: pointer;
+      transition: background .25s, transform .2s, box-shadow .25s;
+    }
+    .btn-primary:hover {
+      background: var(--c-sky);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(74,159,214,.3);
+    }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .9rem 2rem;
+      font-size: .78rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--c-silver); text-decoration: none;
+      border: 1px solid rgba(184,205,227,.18); border-radius: 3px;
+      transition: border-color .25s, color .25s;
+    }
+    .btn-ghost:hover { border-color: var(--c-azure); color: var(--c-azure); }
+
+    /* Right column – logo stage */
+    .hero-right {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+      padding: 6rem 5vw;
+    }
+
+    .orb-stage { position: relative; }
+    .orb {
+      width: clamp(260px, 28vw, 440px); aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(43,98,176,.22) 0%, transparent 68%);
+      display: flex; align-items: center; justify-content: center;
+      animation: breathe 5s ease-in-out infinite;
+    }
+    .orb-ring {
+      position: absolute; inset: 0; border-radius: 50%;
+      border: 1px solid rgba(74,159,214,.13);
+      animation: spinRing 26s linear infinite;
+    }
+    .orb-ring::before {
+      content: ''; position: absolute; top: -5px; left: 50%;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--c-azure); transform: translateX(-50%);
+      box-shadow: 0 0 12px 3px rgba(74,159,214,.4);
+    }
+    .orb-ring-2 {
+      position: absolute; inset: 18%; border-radius: 50%;
+      border: 1px solid rgba(74,159,214,.07);
+      animation: spinRing 18s linear infinite reverse;
+    }
+    .orb-img {
+      width: 72%; position: relative; z-index: 2;
+      filter: drop-shadow(0 6px 48px rgba(74,159,214,.22));
+      animation: float 5.5s ease-in-out infinite;
+    }
+
+    @keyframes riseUp    { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes breathe   { 0%,100%{transform:scale(1)} 50%{transform:scale(1.045)} }
+    @keyframes spinRing  { to { transform: rotate(360deg); } }
+    @keyframes float     { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+
+    /* ══════════════════════════════════════════
+       METRICS BAND
+    ══════════════════════════════════════════ */
+    .metrics-band {
+      background: rgba(12, 26, 48, .7);
+      border-top: 1px solid var(--c-border);
+      border-bottom: 1px solid var(--c-border);
+      backdrop-filter: blur(10px);
+      position: relative; z-index: 5;
+    }
+    .metrics-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+    }
+    .metric {
+      padding: 2.5rem 2rem; text-align: center;
+      border-right: 1px solid var(--c-border);
+      transition: background .3s;
+      position: relative;
+    }
+    .metric:last-child { border-right: none; }
+    .metric:hover { background: rgba(43,98,176,.08); }
+    .metric-val {
+      font-family: var(--f-serif); font-size: 2.6rem; font-weight: 700;
+      color: var(--c-azure); line-height: 1; margin-bottom: .4rem;
+      letter-spacing: -.02em;
+    }
+    .metric-lbl {
+      font-size: .67rem; font-weight: 500; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--c-smoke);
+    }
+
+    /* ══════════════════════════════════════════
+       SERVICES
+    ══════════════════════════════════════════ */
+    #servicios { background: var(--c-deep); }
+
+    .services-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      flex-wrap: wrap; gap: 2rem; margin-bottom: 4rem;
+    }
+
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--c-border); border-radius: 6px; overflow: hidden;
+      background: var(--c-border);
+      gap: 1px;
+    }
+
+    .svc-card {
+      background: var(--c-deep); padding: 2.8rem 2.4rem;
+      position: relative; overflow: hidden;
+      transition: background .3s var(--ease-in-out);
+    }
+    .svc-card::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 0; height: 2px; background: var(--c-azure);
+      transition: width .4s var(--ease-out);
+    }
+    .svc-card:hover { background: rgba(21,40,69,.8); }
+    .svc-card:hover::before { width: 100%; }
+
+    .svc-num {
+      font-family: var(--f-serif); font-size: .7rem;
+      color: rgba(74,159,214,.3); margin-bottom: 1.8rem;
+      letter-spacing: .1em;
+    }
+    .svc-icon { width: 36px; height: 36px; color: var(--c-azure); margin-bottom: 1.4rem; }
+    .svc-name {
+      font-family: var(--f-serif); font-size: 1.13rem; font-weight: 600;
+      color: var(--c-white); margin-bottom: .7rem; line-height: 1.25;
+    }
+    .svc-desc { font-size: .84rem; font-weight: 300; line-height: 1.82; color: var(--c-smoke); }
+    .svc-arrow {
+      position: absolute; bottom: 1.8rem; right: 1.8rem;
+      color: rgba(74,159,214,.15); transition: color .3s, transform .3s;
+    }
+    .svc-card:hover .svc-arrow { color: var(--c-azure); transform: translate(3px, -3px); }
+
+    /* ══════════════════════════════════════════
+       ABOUT
+    ══════════════════════════════════════════ */
+    #nosotros {
+      background: linear-gradient(158deg, #060e1c 0%, #0c1a30 50%, #08121f 100%);
+    }
+
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1.15fr;
+      gap: 7rem; align-items: center;
+    }
+
+    /* Visual */
+    .about-visual { position: relative; }
+    .about-offset {
+      position: absolute;
+      inset: 1.8rem -1.8rem -1.8rem 1.8rem;
+      border: 1px solid var(--c-border); border-radius: 6px; z-index: 0;
+    }
+    .about-frame {
+      position: relative; z-index: 1; aspect-ratio: 1;
+      background: radial-gradient(ellipse at 40% 38%, rgba(30,63,114,.55) 0%, rgba(8,18,31,.95) 70%);
+      border: 1px solid var(--c-border); border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .about-frame img { width: 78%; filter: drop-shadow(0 8px 40px rgba(74,159,214,.18)); }
+    .about-frame::before,
+    .about-frame::after {
+      content: ''; position: absolute;
+      width: 36px; height: 36px;
+      border-color: var(--c-azure); border-style: solid; opacity: .4;
+    }
+    .about-frame::before { top: 16px; left: 16px; border-width: 1px 0 0 1px; }
+    .about-frame::after  { bottom: 16px; right: 16px; border-width: 0 1px 1px 0; }
+
+    .about-badge {
+      position: absolute; bottom: -1.6rem; right: -1.6rem;
+      background: var(--c-azure); color: var(--c-void);
+      padding: 1.1rem 1.6rem; border-radius: 4px; z-index: 3;
+    }
+    .about-badge-label {
+      font-size: .6rem; font-weight: 600; letter-spacing: .18em;
+      text-transform: uppercase; opacity: .7; margin-bottom: .3rem;
+    }
+    .about-badge-value {
+      font-family: var(--f-serif); font-size: 1.3rem; font-weight: 700; line-height: 1.2;
+    }
+
+    /* Pillars */
+    .pillars { display: flex; flex-direction: column; gap: .9rem; margin-top: 2.5rem; }
+    .pillar {
+      display: flex; gap: 1.1rem; align-items: flex-start;
+      padding: 1.25rem 1.5rem;
+      background: rgba(21,40,69,.22); border: 1px solid var(--c-border);
+      border-radius: 4px; transition: background .25s, border-color .25s;
+    }
+    .pillar:hover { background: rgba(43,98,176,.12); border-color: var(--c-border2); }
+    .pillar-icon { color: var(--c-azure); flex-shrink: 0; margin-top: 1px; }
+    .pillar-name { font-size: .84rem; font-weight: 500; color: var(--c-white); margin-bottom: .2rem; }
+    .pillar-text { font-size: .8rem; font-weight: 300; line-height: 1.72; color: var(--c-smoke); }
+
+    /* ══════════════════════════════════════════
+       PROCESS
+    ══════════════════════════════════════════ */
+    #proceso { background: var(--c-ink); }
+
+    .process-header {
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 1rem; margin-bottom: 4.5rem;
+    }
+
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--c-border); border-radius: 6px; overflow: hidden;
+    }
+
+    .step {
+      padding: 2.8rem 2.2rem; border-right: 1px solid var(--c-border);
+      position: relative; transition: background .25s;
+    }
+    .step:last-child { border-right: none; }
+    .step:hover { background: rgba(21,40,69,.4); }
+
+    .step-num {
+      font-family: var(--f-serif); font-size: 3.2rem; font-weight: 700;
+      color: rgba(74,159,214,.09); line-height: 1; margin-bottom: 1.5rem;
+      user-select: none;
+    }
+    .step-name { font-size: .92rem; font-weight: 500; color: var(--c-white); margin-bottom: .65rem; }
+    .step-text { font-size: .82rem; font-weight: 300; line-height: 1.78; color: var(--c-smoke); }
+
+    /* connector dot */
+    .step-dot {
+      position: absolute; top: 2.8rem; right: -6px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--c-deep); border: 1.5px solid var(--c-azure); z-index: 2;
+    }
+    .step:last-child .step-dot { display: none; }
+
+    /* ══════════════════════════════════════════
+       CONTACT
+    ══════════════════════════════════════════ */
+    #contacto { background: var(--c-deep); }
+
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1.45fr;
+      gap: 6rem; align-items: start;
+    }
+
+    /* Channels */
+    .channels { display: flex; flex-direction: column; gap: .8rem; margin-top: 2.5rem; }
+    .channel {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1.2rem 1.4rem;
+      border: 1px solid var(--c-border); border-radius: 4px;
+      text-decoration: none;
+      transition: background .25s, border-color .25s;
+    }
+    .channel:hover { background: rgba(43,98,176,.09); border-color: var(--c-border2); }
+    .ch-icon {
+      width: 36px; height: 36px; flex-shrink: 0; border-radius: 3px;
+      background: rgba(74,159,214,.1);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--c-azure);
+    }
+    .ch-label {
+      font-size: .63rem; font-weight: 600; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--c-smoke); margin-bottom: .25rem;
+    }
+    .ch-value { font-size: .88rem; font-weight: 400; color: var(--c-white); }
+    .ch-note  { font-size: .74rem; font-weight: 300; color: var(--c-smoke); margin-top: .1rem; }
+
+    /* Form box */
+    .form-box {
+      background: rgba(12,26,48,.5);
+      border: 1px solid var(--c-border); border-radius: 6px;
+      padding: clamp(2rem, 4vw, 3rem);
+    }
+    .form-title {
+      font-family: var(--f-serif); font-size: 1.55rem; font-weight: 600;
+      color: var(--c-white); margin-bottom: .45rem;
+    }
+    .form-subtitle { font-size: .84rem; font-weight: 300; color: var(--c-smoke); margin-bottom: 2rem; }
+
+    .form-grid { display: grid; gap: 1.1rem; }
+    .form-row  { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+
+    .field label {
+      display: block; font-size: .66rem; font-weight: 600; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--c-smoke); margin-bottom: .5rem;
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%; padding: .82rem 1rem;
+      background: rgba(5,12,24,.65); color: var(--c-white);
+      border: 1px solid rgba(74,159,214,.15); border-radius: 3px;
+      font-family: var(--f-sans); font-size: .88rem; font-weight: 300;
+      outline: none; transition: border-color .25s, box-shadow .25s;
+    }
+    .field input::placeholder,
+    .field textarea::placeholder { color: rgba(110,142,172,.4); }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--c-azure);
+      box-shadow: 0 0 0 3px rgba(74,159,214,.08);
+    }
+    .field textarea { resize: vertical; min-height: 120px; line-height: 1.65; }
+    .field select {
+      appearance: none; cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236e8eac' stroke-width='1.5' stroke-linecap='round' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem;
+    }
+    .field select option { background: var(--c-deep); }
+
+    .btn-submit {
+      width: 100%; padding: 1rem 1.5rem; margin-top: .3rem;
+      background: var(--c-azure); color: var(--c-void);
+      font-family: var(--f-sans); font-size: .79rem; font-weight: 600;
+      letter-spacing: .13em; text-transform: uppercase;
+      border: none; border-radius: 3px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: .55rem;
+      transition: background .25s, transform .2s, box-shadow .25s;
+    }
+    .btn-submit:hover {
+      background: var(--c-sky);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 28px rgba(74,159,214,.28);
+    }
+
+    .form-note {
+      margin-top: 1rem; font-size: .72rem; color: var(--c-smoke);
+      text-align: center; font-weight: 300; display: flex; align-items: center;
+      justify-content: center; gap: .4rem;
+    }
+    .form-note svg { opacity: .5; }
+
+    #form-success {
+      display: none; padding: 1rem 1.4rem; margin-top: .8rem;
+      background: rgba(74,159,214,.07);
+      border: 1px solid rgba(74,159,214,.28);
+      border-radius: 4px; color: var(--c-azure);
+      font-size: .87rem; text-align: center;
+    }
+
+    /* Location bar */
+    .loc-bar {
+      border-top: 1px solid var(--c-border);
+      padding: 1.6rem var(--pad-x);
+      background: rgba(5,12,24,.4);
+      display: flex; align-items: center; justify-content: center;
+      gap: 1.2rem; flex-wrap: wrap;
+      font-size: .8rem; font-weight: 300; color: var(--c-smoke);
+    }
+    .loc-bar strong { color: var(--c-white); font-weight: 500; }
+    .loc-bar svg { color: var(--c-azure); flex-shrink: 0; }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    footer {
+      background: #020810;
+      border-top: 1px solid var(--c-border);
+      padding: 5rem var(--pad-x) 2.5rem;
+    }
+    .footer-inner { max-width: var(--max-w); margin: 0 auto; }
+    .footer-top {
+      display: grid; grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 4rem; padding-bottom: 3.5rem; margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--c-border);
+    }
+
+    .footer-brand { display: flex; align-items: center; gap: .75rem; margin-bottom: 1.1rem; }
+    .footer-brand img { width: 32px; filter: drop-shadow(0 2px 10px rgba(74,159,214,.2)); }
+    .footer-brand-name {
+      font-family: var(--f-serif); font-size: 1.2rem; font-weight: 600; color: var(--c-white);
+    }
+    .footer-brand-sub {
+      font-size: .54rem; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--c-azure); margin-top: 2px;
+    }
+    .footer-tagline { font-size: .83rem; font-weight: 300; color: var(--c-smoke); line-height: 1.75; max-width: 280px; }
+
+    .footer-col-title {
+      font-size: .64rem; font-weight: 600; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--c-azure); margin-bottom: 1.4rem;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: .65rem; }
+    .footer-links a {
+      font-size: .82rem; font-weight: 300; color: var(--c-smoke);
+      text-decoration: none; transition: color .22s;
+    }
+    .footer-links a:hover { color: var(--c-white); }
+
+    .footer-contacts { display: flex; flex-direction: column; gap: .85rem; }
+    .footer-contact-row { display: flex; align-items: center; gap: .65rem; }
+    .footer-contact-row svg { color: var(--c-azure); flex-shrink: 0; }
+    .footer-contact-row a,
+    .footer-contact-row span {
+      font-size: .81rem; font-weight: 300; color: var(--c-smoke);
+      text-decoration: none; transition: color .22s;
+    }
+    .footer-contact-row a:hover { color: var(--c-white); }
+
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-copy { font-size: .72rem; color: rgba(110,142,172,.4); font-weight: 300; }
+    .footer-legal { display: flex; gap: 1.5rem; }
+    .footer-legal a {
+      font-size: .72rem; color: rgba(110,142,172,.35); text-decoration: none;
+      transition: color .22s;
+    }
+    .footer-legal a:hover { color: var(--c-smoke); }
+
+    /* ══════════════════════════════════════════
+       WHATSAPP FLOAT
+    ══════════════════════════════════════════ */
+    .wa-fab {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 500;
+      display: flex; align-items: center; gap: .7rem;
+      background: #1db954; color: #fff;
+      padding: .78rem 1.3rem .78rem 1rem; border-radius: 50px;
+      text-decoration: none; font-size: .8rem; font-weight: 600;
+      box-shadow: 0 4px 24px rgba(29,185,84,.3);
+      transition: transform .25s var(--ease-out), box-shadow .25s;
+    }
+    .wa-fab:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(29,185,84,.42); }
+    .wa-fab svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .wa-fab-label { line-height: 1.25; }
+    .wa-fab-sub { font-size: .67rem; font-weight: 300; opacity: .85; display: block; }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════ */
+    @media (max-width: 1100px) {
+      .about-grid { gap: 4rem; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; }
+      .hero-left { padding: calc(var(--nav-h) + 3rem) var(--pad-x) 3rem; }
+      .hero-right { padding: 2rem var(--pad-x) 5rem; }
+      .hero-divider { display: none; }
+      .orb { width: clamp(200px, 55vw, 300px); }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-visual { max-width: 360px; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3.5rem; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .metrics-inner { grid-template-columns: 1fr 1fr; }
+      .metric { border-bottom: 1px solid var(--c-border); }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links, .nav-phone { display: none; }
+      .hamburger { display: flex; }
+      .services-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 2.5rem; }
+      .wa-fab-label { display: none; }
+      .wa-fab { padding: .85rem; border-radius: 50%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ MOBILE MENU ══ -->
+<div id="mob-menu" role="dialog" aria-label="Menú de navegación" aria-modal="true">
+  <button class="mob-close" onclick="closeMob()" aria-label="Cerrar menú">✕</button>
+  <ul>
+    <li><a href="#servicios" onclick="closeMob()">Servicios</a></li>
+    <li><a href="#nosotros"  onclick="closeMob()">Nosotros</a></li>
+    <li><a href="#proceso"   onclick="closeMob()">Cómo Trabajamos</a></li>
+    <li><a href="#contacto"  onclick="closeMob()">Contacto</a></li>
+  </ul>
+  <div class="mob-footer">
+    <a class="mob-wa-btn" href="https://wa.me/543773523603" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Escribir por WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- ══ NAVIGATION ══ -->
+<nav id="nav" role="navigation" aria-label="Navegación principal">
+  <a class="nav-logo" href="#" aria-label="Filártiga – inicio">
+    <img src="logocelestef.png" alt="" role="presentation" />
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">Filártiga</span>
+      <span class="nav-logo-sub">Estudio Contable</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <a class="nav-phone" href="tel:+543773523603">+54 3773 523603</a>
+    <a class="btn-nav-wa" href="https://wa.me/543773523603" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <button class="hamburger" onclick="toggleMob()" aria-label="Abrir menú" aria-expanded="false" aria-controls="mob-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero" aria-label="Inicio">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-divider" aria-hidden="true"></div>
+
+  <div class="hero-left">
+    <div class="hero-kicker">Mercedes · Corrientes · Argentina</div>
+    <h1 class="hero-h1">
+      Gestión contable<br>en manos <em>expertas.</em>
+    </h1>
+    <p class="hero-lead">Brindamos asesoramiento contable, impositivo y laboral para autónomos, pymes y empresas de la región, con dedicación, ética y respuesta garantizada.</p>
+    <div class="hero-cta">
+      <a class="btn-primary" href="#contacto">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        Consulta gratuita
+      </a>
+      <a class="btn-ghost" href="#servicios">
+        Ver servicios
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-right" aria-hidden="true">
+    <div class="orb-stage">
+      <div class="orb">
+        <div class="orb-ring"></div>
+        <div class="orb-ring-2"></div>
+        <img class="orb-img" src="logocelestef.png" alt="Filártiga Estudio Contable" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ METRICS ══ -->
+<div class="metrics-band" role="region" aria-label="Cifras destacadas">
+  <div class="metrics-inner">
+    <div class="metric reveal">
+      <div class="metric-val">+10</div>
+      <div class="metric-lbl">Años de experiencia</div>
+    </div>
+    <div class="metric reveal d1">
+      <div class="metric-val">+200</div>
+      <div class="metric-lbl">Clientes atendidos</div>
+    </div>
+    <div class="metric reveal d2">
+      <div class="metric-val">100%</div>
+      <div class="metric-lbl">Atención personalizada</div>
+    </div>
+    <div class="metric reveal d3">
+      <div class="metric-val">24 hs</div>
+      <div class="metric-lbl">Tiempo de respuesta</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SERVICIOS ══ -->
+<section id="servicios">
+  <div class="section-pad">
+    <div class="services-header">
+      <div class="reveal">
+        <div class="eyebrow" style="margin-bottom:.9rem;">Nuestros Servicios</div>
+        <h2 class="section-title">Soluciones contables <em>integrales</em></h2>
+      </div>
+      <p class="section-body reveal d1" style="margin-top:0;max-width:380px;">Cobertura profesional completa para todas sus obligaciones fiscales, laborales y contables.</p>
+    </div>
+
+    <div class="services-grid">
+      <!-- 01 -->
+      <div class="svc-card reveal">
+        <div class="svc-num">01</div>
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185z"/></svg>
+        <div class="svc-name">Liquidación Impositiva</div>
+        <p class="svc-desc">IVA, Ganancias, Régimen Especial y Monotributistas. Liquidación de Ingresos Brutos y demás obligaciones fiscales mensuales y anuales.</p>
+        <svg class="svc-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+      </div>
+
+      <!-- 02 -->
+      <div class="svc-card reveal d1">
+        <div class="svc-num">02</div>
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+        <div class="svc-name">Liquidación de Sueldos</div>
+        <p class="svc-desc">Altas en ARCA, recibos de haberes, cargas sociales, F931, ART, obra social, convenios colectivos, Libro Sueldo Digital y liquidaciones finales. Gestión integral del personal.</p>
+        <svg class="svc-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+      </div>
+
+      <!-- 03 -->
+      <div class="svc-card reveal d2">
+        <div class="svc-num">03</div>
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3"/></svg>
+        <div class="svc-name">Estados Contables</div>
+        <p class="svc-desc">Preparación y presentación de balances, memorias, anexos y notas complementarias según las RT vigentes, para empresas de todos los rubros.</p>
+        <svg class="svc-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+      </div>
+
+      <!-- 04 -->
+      <div class="svc-card reveal">
+        <div class="svc-num">04</div>
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352"/></svg>
+        <div class="svc-name">Asesoramiento Impositivo</div>
+        <p class="svc-desc">Planificación fiscal estratégica para optimizar la carga tributaria de su empresa o actividad en forma legal y eficiente.</p>
+        <svg class="svc-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+      </div>
+
+      <!-- 05 -->
+      <div class="svc-card reveal d1">
+        <div class="svc-num">05</div>
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+        <div class="svc-name">Trámites ante ARCA</div>
+        <p class="svc-desc">Trámites ante organismos fiscales nacionales y provinciales. Altas y bajas, recategorizaciones y representación profesional.</p>
+        <svg class="svc-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+      </div>
+
+      <!-- 06 -->
+      <div class="svc-card reveal d2">
+        <div class="svc-num">06</div>
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/></svg>
+        <div class="svc-name">Consultoría Empresarial</div>
+        <p class="svc-desc">Análisis de costos, proyecciones financieras, estructuración societaria y acompañamiento estratégico en la toma de decisiones para su crecimiento.</p>
+        <svg class="svc-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NOSOTROS ══ -->
+<section id="nosotros">
+  <div class="section-pad">
+    <div class="about-grid">
+
+      <div class="about-visual reveal">
+        <div class="about-offset" aria-hidden="true"></div>
+        <div class="about-frame">
+          <img src="logocelestef.png" alt="Filártiga Estudio Contable y Consultoría – logo" />
+        </div>
+        <div class="about-badge">
+          <div class="about-badge-label">Sede en</div>
+          <div class="about-badge-value">Mercedes,<br>Corrientes</div>
+        </div>
+      </div>
+
+      <div class="reveal d1">
+        <div class="eyebrow" style="margin-bottom:.9rem;">Quiénes Somos</div>
+        <h2 class="section-title" style="margin-bottom:1rem;">Compromiso y <em>experiencia</em> a su servicio</h2>
+        <p class="section-body">Somos un estudio contable profesional radicado en Mercedes, Corrientes. Acompañamos a personas físicas, monotributistas, autónomos, pymes y empresas con un enfoque cercano, moderno y orientado a resultados reales.</p>
+
+        <div class="pillars">
+          <div class="pillar">
+            <svg class="pillar-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/></svg>
+            <div>
+              <div class="pillar-name">Profesionales Matriculados</div>
+              <div class="pillar-text">Actualizados en normativa ARCA y legislación provincial de Corrientes.</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <svg class="pillar-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <div>
+              <div class="pillar-name">Respuesta en 24 Horas</div>
+              <div class="pillar-text">Atención por WhatsApp, email y reuniones presenciales según su disponibilidad.</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <svg class="pillar-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>
+            <div>
+              <div class="pillar-name">Confidencialidad Total</div>
+              <div class="pillar-text">Su información y documentación resguardada con la más alta discreción profesional.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROCESO ══ -->
+<section id="proceso">
+  <div class="section-pad">
+    <div class="process-header">
+      <div class="eyebrow reveal">Cómo Trabajamos</div>
+      <h2 class="section-title reveal d1" style="text-align:center;max-width:480px;">Un proceso simple y <em>transparente</em></h2>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step reveal">
+        <div class="step-dot" aria-hidden="true"></div>
+        <div class="step-num">01</div>
+        <div class="step-name">Primera Consulta</div>
+        <p class="step-text">Analizamos su situación. Identificamos necesidades y proponemos el servicio más adecuado para su caso.</p>
+      </div>
+      <div class="step reveal d1">
+        <div class="step-dot" aria-hidden="true"></div>
+        <div class="step-num">02</div>
+        <div class="step-name">Diagnóstico</div>
+        <p class="step-text">Revisamos su información íntegra fiscal y contable, detectamos riesgos y oportunidades, y elaboramos una propuesta personalizada.</p>
+      </div>
+      <div class="step reveal d2">
+        <div class="step-dot" aria-hidden="true"></div>
+        <div class="step-num">03</div>
+        <div class="step-name">Gestión Profesional</div>
+        <p class="step-text">Ejecutamos todas las tareas acordadas con precisión: vencimientos, presentaciones y trámites ante los organismos correspondientes.</p>
+      </div>
+      <div class="step reveal d3">
+        <div class="step-num">04</div>
+        <div class="step-name">Seguimiento Continuo</div>
+        <p class="step-text">Lo mantenemos informado ante cada novedad fiscal o laboral, con asesoramiento preventivo a lo largo del año.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACTO ══ -->
+<section id="contacto">
+  <div class="section-pad">
+    <div class="contact-grid">
+
+      <div class="reveal">
+        <div class="eyebrow" style="margin-bottom:.9rem;">Contacto</div>
+        <h2 class="section-title" style="margin-bottom:1rem;">Hablemos de su <em>situación</em></h2>
+        <p class="section-body">La primera consulta es sin cargo. Nuestro equipo le responderá dentro de las 24 horas hábiles.</p>
+
+        <div class="channels">
+          <a class="channel" href="https://wa.me/543773523603" target="_blank" rel="noopener">
+            <div class="ch-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </div>
+            <div>
+              <div class="ch-label">WhatsApp</div>
+              <div class="ch-value">+54 3773 523603</div>
+              <div class="ch-note">Respuesta inmediata</div>
+            </div>
+          </a>
+
+          <a class="channel" href="mailto:filartigaestudio@gmail.com">
+            <div class="ch-icon" aria-hidden="true">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+            </div>
+            <div>
+              <div class="ch-label">Correo Electrónico</div>
+              <div class="ch-value">filartigaestudio@gmail.com</div>
+              <div class="ch-note">Respuesta en 24 horas hábiles</div>
+            </div>
+          </a>
+
+          <div class="channel" style="cursor:default;">
+            <div class="ch-icon" aria-hidden="true">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+            </div>
+            <div>
+              <div class="ch-label">Dirección</div>
+              <div class="ch-value">Mercedes, Corrientes</div>
+              <div class="ch-note">Atención presencial con turno previo</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal d1">
+        <div class="form-box">
+          <h3 class="form-title">Envíenos su consulta</h3>
+          <p class="form-subtitle">Completá el formulario y nos contactamos a la brevedad.</p>
+
+          <form class="form-grid" id="contact-form" onsubmit="handleForm(event)" novalidate>
+            <div class="form-row">
+              <div class="field">
+                <label for="f-name">Nombre y Apellido *</label>
+                <input id="f-name" name="nombre" type="text" placeholder="Ej: María López" required autocomplete="name" />
+              </div>
+              <div class="field">
+                <label for="f-tel">Teléfono / WhatsApp</label>
+                <input id="f-tel" name="telefono" type="tel" placeholder="+54 3773 ..." autocomplete="tel" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-email">Correo Electrónico *</label>
+              <input id="f-email" name="email" type="email" placeholder="su@correo.com" required autocomplete="email" />
+            </div>
+            <div class="field">
+              <label for="f-service">Servicio de interés</label>
+              <select id="f-service" name="servicio">
+                <option value="" disabled selected>Seleccionar…</option>
+                <option>Liquidación Impositiva</option>
+                <option>Liquidación de Sueldos</option>
+                <option>Estados Contables / Balance</option>
+                <option>Asesoramiento Impositivo</option>
+                <option>Trámites ante ARCA</option>
+                <option>Consultoría Empresarial</option>
+                <option>Otra consulta</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-msg">Su Consulta</label>
+              <textarea id="f-msg" name="consulta" placeholder="Cuéntenos brevemente su situación o necesidad…"></textarea>
+            </div>
+            <button type="submit" class="btn-submit">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/></svg>
+              Enviar Consulta
+            </button>
+            <p class="form-note">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>
+              Su información es tratada con absoluta confidencialidad profesional.
+            </p>
+          </form>
+
+          <div id="form-success" role="alert">
+            ✓ &nbsp;¡Consulta enviada! Nos ponemos en contacto a la brevedad.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="loc-bar">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+    <span>
+      <strong>Mercedes, Corrientes, Argentina</strong>
+      &ensp;·&ensp; Atención presencial con turno previo
+      &ensp;·&ensp; <strong>+54 3773 523603</strong>
+      &ensp;·&ensp; filartigaestudio@gmail.com
+    </span>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+
+      <div>
+        <div class="footer-brand">
+          <img src="logocelestef.png" alt="Filártiga" />
+          <div>
+            <div class="footer-brand-name">Filártiga</div>
+            <div class="footer-brand-sub">Estudio Contable y Consultoría</div>
+          </div>
+        </div>
+        <p class="footer-tagline">Profesionales comprometidos con su tranquilidad patrimonial. Asesoramiento contable, impositivo y laboral en Mercedes, Corrientes.</p>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Servicios</div>
+        <ul class="footer-links">
+          <li><a href="#servicios">Liquidación Impositiva</a></li>
+          <li><a href="#servicios">Liquidación de Sueldos</a></li>
+          <li><a href="#servicios">Estados Contables</a></li>
+          <li><a href="#servicios">Asesoramiento Fiscal</a></li>
+          <li><a href="#servicios">Trámites ante ARCA</a></li>
+          <li><a href="#servicios">Consultoría Empresarial</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Contacto</div>
+        <div class="footer-contacts">
+          <div class="footer-contact-row">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <a href="https://wa.me/543773523603" target="_blank" rel="noopener">+54 3773 523603</a>
+          </div>
+          <div class="footer-contact-row">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+            <a href="mailto:filartigaestudio@gmail.com">filartigaestudio@gmail.com</a>
+          </div>
+          <div class="footer-contact-row">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+            <span>Mercedes, Corrientes, Argentina</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Filártiga Estudio Contable y Consultoría. Todos los derechos reservados.</div>
+      <div class="footer-legal">
+        <a href="#">Privacidad</a>
+        <a href="#">Términos</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ WHATSAPP FAB ══ -->
+<a class="wa-fab" href="https://wa.me/543773523603" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <div class="wa-fab-label">
+    Escribinos
+    <span class="wa-fab-sub">Respuesta inmediata</span>
+  </div>
+</a>
+
+<!-- ══ SCRIPTS ══ -->
+<script>
+(function () {
+  'use strict';
+
+  /* ─── Nav scroll ─────────────────────────── */
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 50);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // run once on load
+
+  /* ─── Mobile menu ────────────────────────── */
+  const mobMenu = document.getElementById('mob-menu');
+  const hamburger = document.querySelector('.hamburger');
+
+  function openMob() {
+    mobMenu.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMob() {
+    mobMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  window.toggleMob = function () {
+    mobMenu.classList.contains('open') ? closeMob() : openMob();
+  };
+  window.closeMob = closeMob;
+
+  // Close on Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mobMenu.classList.contains('open')) closeMob();
+  });
+
+  /* ─── Intersection reveal ────────────────── */
+  const io = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }),
+    { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ─── Contact form (Formspree) ───────────── */
+  // ┌──────────────────────────────────────────────────────────────────┐
+  // │  CONFIGURACIÓN FORMSPREE                                         │
+  // │  1. Crear cuenta gratis en https://formspree.io                  │
+  // │  2. Crear un nuevo Form → copiar el endpoint generado            │
+  // │  3. Reemplazar la URL de abajo con tu endpoint real              │
+  // │  Ejemplo: 'https://formspree.io/f/xpwzabcd'                     │
+  // └──────────────────────────────────────────────────────────────────┘
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/maqvvwoa';
+
+  window.handleForm = async function (e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn  = form.querySelector('.btn-submit');
+
+    // Validación básica
+    const nombre = form.querySelector('[name="nombre"]').value.trim();
+    const email  = form.querySelector('[name="email"]').value.trim();
+    if (!nombre || !email) {
+      form.querySelector('[name="nombre"]').reportValidity();
+      form.querySelector('[name="email"]').reportValidity();
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando…';
+
+    try {
+      const data = new FormData(form);
+      const res  = await fetch(FORMSPREE_ENDPOINT, {
+        method:  'POST',
+        body:    data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        const ok = document.getElementById('form-success');
+        ok.style.display = 'block';
+        ok.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        const json = await res.json();
+        const msg  = (json.errors || []).map(er => er.message).join(', ') || 'Error al enviar. Intentá de nuevo.';
+        alert(msg);
+        btn.disabled = false;
+        btn.textContent = 'Enviar Consulta';
+      }
+    } catch (_) {
+      alert('Sin conexión. Verificá tu internet e intentá de nuevo.');
+      btn.disabled = false;
+      btn.textContent = 'Enviar Consulta';
+    }
+  };
+
+  /* ─── Active nav link on scroll ─────────── */
+  const sections = document.querySelectorAll('section[id], div[id="hero"]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const sectionObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.removeAttribute('aria-current');
+            if (link.getAttribute('href') === `#${entry.target.id}`) {
+              link.setAttribute('aria-current', 'page');
+            }
+          });
+        }
+      });
+    },
+    { threshold: 0.35 }
+  );
+  sections.forEach(s => sectionObserver.observe(s));
+
+})();
+</script>
+</body>
+</html>
